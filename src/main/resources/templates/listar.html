@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8" />
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+		<div class="card bg-light">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+				<h4 class="card-title">
+					<a th:href="@{/form}" class="btn btn-primary btn-xs">Crear
+						vehículo</a>
+				</h4>
+
+
+				<table class="table table-striped table-bordered">
+					<thead class="thead-inverse">
+						<tr>
+							<th>id</th>
+							<th>dominio</th>
+							<th>tipo</th>
+							<th>marca</th>
+							<th>descripción</th>
+							<th>fecha</th>
+							<th>editar</th>
+							<th>eliminar</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="vehiculo: ${vehiculos}">
+							<td th:text="${vehiculo.id}"></td>
+							<td th:text="${vehiculo.dominio}"></td>
+							<td th:text="${vehiculo.tipo_vehic}"></td>
+							<td th:text="${vehiculo.marca_vehic}"></td>
+							<td th:text="${vehiculo.desc_vehic}"></td>
+							<td th:text="${vehiculo.createAt}"></td>
+							<td><a class="btn btn-primary btn-xs"
+								th:href="@{/form/} + ${vehiculo.id}" th:text="'Editar'"></a></td>
+							<td><a class="btn btn-danger btn-xs"
+								th:href="@{/eliminar/} + ${vehiculo.id}" th:text="'Eliminar'"
+								onclick="return confirm('Estas seguro que quiere eliminar?');"></a></td>
+						</tr>
+
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
