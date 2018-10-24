@@ -10,5 +10,5 @@ public interface IVehiculoService {
 	public Vehiculo findOne(Long id);
 	public void save (Vehiculo vehiculo);
 	public void delete (Long id);
-	
+	public Vehiculo saveAPI(Vehiculo vehiculo);
 }
