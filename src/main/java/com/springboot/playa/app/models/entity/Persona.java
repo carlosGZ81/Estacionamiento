@@ -2,7 +2,6 @@ package com.springboot.playa.app.models.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,13 +11,11 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotEmpty;
-
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "vehiculos")
-public class Vehiculo implements Serializable {
+@Table(name = "personas")
+public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,23 +23,20 @@ public class Vehiculo implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotEmpty
-    private String dominio;
-    private Integer tipo_vehic;
-    private Integer marca_vehic;
-    private Integer desc_vehic;
+    private String nom_persona;
+    private String ape_persona;
+    private Integer dni;
 
-    /*@NotNull*/
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createAt;
-
+    
     @PrePersist
     public void prePersist() {
         createAt = new Date();
     }
-
+    
     public Long getId() {
         return id;
     }
@@ -51,36 +45,28 @@ public class Vehiculo implements Serializable {
         this.id = id;
     }
 
-    public String getDominio() {
-        return dominio;
+    public String getNom_persona() {
+        return nom_persona;
     }
 
-    public void setDominio(String dominio) {
-        this.dominio = dominio;
+    public void setNom_persona(String nom_persona) {
+        this.nom_persona = nom_persona;
     }
 
-    public Integer getTipo_vehic() {
-        return tipo_vehic;
+    public String getApe_persona() {
+        return ape_persona;
     }
 
-    public void setTipo_vehic(Integer tipo_vehic) {
-        this.tipo_vehic = tipo_vehic;
+    public void setApe_persona(String ape_persona) {
+        this.ape_persona = ape_persona;
     }
 
-    public Integer getMarca_vehic() {
-        return marca_vehic;
+    public Integer getDni() {
+        return dni;
     }
 
-    public void setMarca_vehic(Integer marca_vehic) {
-        this.marca_vehic = marca_vehic;
-    }
-
-    public Integer getDesc_vehic() {
-        return desc_vehic;
-    }
-
-    public void setDesc_vehic(Integer desc_vehic) {
-        this.desc_vehic = desc_vehic;
+    public void setDni(Integer dni) {
+        this.dni = dni;
     }
 
     public Date getCreateAt() {
