@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class PersonaServiceImpl implements IPersonaService{
-    
+public class PersonaServiceImpl implements IPersonaService {
+
     @Autowired
     private IPersonaDao personaDao;
-    
+
     @Override
     @Transactional(readOnly = true)
     public List<Persona> findAll() {
@@ -22,24 +22,23 @@ public class PersonaServiceImpl implements IPersonaService{
     @Override
     @Transactional(readOnly = true)
     public Persona findOne(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        return personaDao.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
-    public void save(Persona vehiculo) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+    public void save(Persona persona) {
+        personaDao.save(persona);
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        personaDao.deleteById(id);
     }
 
     /*@Override
     public Persona saveAPI(Persona vehiculo) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }*/
-    
 }

@@ -11,6 +11,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -23,20 +25,24 @@ public class Persona implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
     private String nom_persona;
+    @NotEmpty
     private String ape_persona;
+    @NotNull
     private Integer dni;
 
+    @NotNull
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createAt;
-    
+
     @PrePersist
     public void prePersist() {
         createAt = new Date();
     }
-    
+
     public Long getId() {
         return id;
     }

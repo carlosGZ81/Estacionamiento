@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <meta charset="UTF-8" />
+    <head th:replace="layout/layout :: head"></head>
+
+    <body>
+        <header th:replace="layout/layout :: header"></header>
+
+        <div class="container py-4">
+            <div class="card bg-light">
+                <div class="card-header" th:text="${titulo}"></div>
+                <div class="card-body">
+
+                    <form th:action="@{/form_persona}" th:object="${persona}" method="post">
+
+                        <div class="form-group row">
+                            <label for="nom_persona" class="col-sm-2 col-form-label">Nombre</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{nom_persona}" class="form-control" th:errorclass="'form-control alert-danger'" /> 
+                                <small class="form-text text-danger" th:if="${#fields.hasErrors('nom_persona')}" th:errors="*{nom_persona}"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="ape_persona" class="col-sm-2 col-form-label">Apellido</label>
+                            <div class="col-sm-6">
+                            <input type="text" th:field="*{ape_persona}" class="form-control" th:errorClass="'form-control alert-danger'"/>
+                            <small class="form-text text-danger" th:if="${#fields.hasErrors('ape_persona')}" th:errors="*{ape_persona}"></small>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                           <label for="dni" class="col-sm-2 col-form-label">DNI</label>
+                           <div class="col-sm-6">
+                           <input type="number" th:field="*{dni}" class="form-control" th:errorClass="'form-control alert-danger'"/>
+                           <small class="form-text text-danger" th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></small>
+                           </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                            <input type="submit" value="Crear Persona" class="btn btn-primary" />
+                            </div>
+                        </div>
+                         <input type="hidden" th:field="*{id}" />
+                         <input type="hidden" th:field="*{createAt}" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+</html>
