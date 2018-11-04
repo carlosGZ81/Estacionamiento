@@ -1,75 +1,113 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<meta charset="UTF-8" />
-<head th:replace="layout/layout :: head"></head>
+    <meta charset="UTF-8" />
+    <head th:replace="layout/layout :: head"/>
+    <script>
+        function upperCaseF(a) {
+            setTimeout(function () {
+                a.value = a.value.toUpperCase();
+            }, 1);
+        }
+    </script>
+    <body>
 
-<body>
+        <header th:replace="layout/layout :: header"/>
 
-	<header th:replace="layout/layout :: header"></header>
-
-	<div class="container py-4">
-		<div class="card bg-light">
-			<div class="card-header" th:text="${titulo}"></div>
-			<div class="card-body">
+        <div class="container py-4">
+            <div class="card bg-light">
+                <div class="card-header" th:text="${titulo}"></div>
+                <div class="card-body">
 
 
-				<form th:action="@{/form}" th:object="${vehiculo}" method="post">
+                    <form th:action="@{/form}" th:object="${vehiculo}" method="post">
 
-					<div class="form-group row">
-						<label for="dominio" class="col-sm-2 col-form-label">Dominio</label>
-						<div class="col-sm-6">
-							<input type="text" th:field="*{dominio}" class="form-control"
-								th:errorclass="'form-control alert-danger'" /> <small
-								class="form-text text-danger"
-								th:if="${#fields.hasErrors('dominio')}" th:errors="*{dominio}"></small>
-						</div>
-					</div>
+                        <div class="form-group row">
+                            <label for="dominio" class="col-sm-2 col-form-label">Dominio</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{dominio}" name="dominio" onkeydown="upperCaseF(this)" 
+                                       class="form-control"
+                                       th:errorclass="'form-control alert-danger'" placeholder="AB123CD" required autofocus/> <small
+                                       class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('dominio')}" th:errors="*{dominio}"></small>
+                            </div>
+                        </div>
 
-					<div class="form-group row">
-						<label for="tipo_vehic" class="col-sm-2 col-form-label">Tipo
-							Vehiculo</label>
-						<div class="col-sm-6">
-							<input type="text" th:field="*{tipo_vehic}" class="form-control" />
-							<small class="form-text text-danger"
-								th:if="${#fields.hasErrors('tipo_vehic')}"
-								th:errors="*{tipo_vehic}"></small>
-						</div>
-					</div>
+                        <div class="form-group row">
+                            <label for="tipo_vehic" class="col-sm-2 col-form-label">Tipo
+                                Vehiculo</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{tipo_vehic}" class="form-control" autofocus required>
+                                    <option value=""  selected="selected">Tipo de Vehículo</option>
+                                    <option value="1">AUTO</option>
+                                    <option value="2">MOTO</option>
+                                    <option value="3">CAMIONETA</option>
+                                    <option value="4">CAMION</option>
+                                    <option value="5">UTILITARIO</option>
+                                    <option value="99">OTRO</option>
+                                </select>
+                                <!--                                <input type="text" th:field="*{tipo_vehic}" class="form-control" />-->
+                                <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('tipo_vehic')}"
+                                       th:errors="*{tipo_vehic}"></small>
+                            </div>
+                        </div>
 
-					<div class="form-group row">
-						<label for="marca_vehic" class="col-sm-2 col-form-label">Marca
-							Vehiculo</label>
-						<div class="col-sm-6">
-							<input type="text" th:field="*{marca_vehic}" class="form-control" />
-							<small class="form-text text-danger"
-								th:if="${#fields.hasErrors('marca_vehic')}"
-								th:errors="*{marca_vehic}"></small>
-						</div>
-					</div>
+                        <div class="form-group row">
+                            <label for="marca_vehic" class="col-sm-2 col-form-label">Marca
+                                Vehiculo</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{marca_vehic}" class="form-control" autofocus required>
+                                    <option value=""  selected="selected">Marca del Vehiculo</option>
+                                    <option value="1">AUDI</option>
+                                    <option value="2">CHEVROLET</option>
+                                    <option value="3">BMW</option>
+                                    <option value="4">FIAT</option>
+                                    <option value="5">PEUGEOT</option>
+                                    <option value="6">VOLVO</option>
+                                    <option value="7">CITROEN</option>
+                                    <option value="8">CHRYSLER</option>
+                                    <option value="99">OTRO</option>
+                                </select>
+                                <!--                                <input type="text" th:field="*{marca_vehic}" class="form-control" />-->
+                                <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('marca_vehic')}"
+                                       th:errors="*{marca_vehic}"></small>
+                            </div>
+                        </div>
 
-					<div class="form-group row">
-						<label for="desc_vehic" class="col-sm-2 col-form-label">Descripción
-							Vehiculo</label>
-						<div class="col-sm-6">
-							<input type="text" th:field="*{desc_vehic}" class="form-control" />
-							<small class="form-text text-danger"
-								th:if="${#fields.hasErrors('desc_vehic')}"
-								th:errors="*{desc_vehic}"></small>
-						</div>
-					</div>
+                        <div class="form-group row">
+                            <label for="desc_vehic" class="col-sm-2 col-form-label">Descripción
+                                Vehiculo</label>
+                            <div class="col-sm-6">
+                                <select th:field="*{desc_vehic}" class="form-control" autofocus required>
+                                    <option value=""  selected="selected">Descripción Vehiculo</option>
+                                    <option value="1">SEDAN 3 PUERTAS</option>
+                                    <option value="2">SEDAN 4 PUERTAS</option>
+                                    <option value="3">MOTO MAS DE 100CC</option>
+                                    <option value="4">MOTO MENOS DE 100CC</option>
+                                    <option value="5">UTILITARIO 2 EJES</option>
+                                    <option value="6">UTILITARIO MULTI EJES</option>
+                                    <option value="99">OTRO</option>
+                                </select>
+                                <!--                                <input type="text" th:field="*{desc_vehic}" class="form-control" />-->
+                                <small class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('desc_vehic')}"
+                                       th:errors="*{desc_vehic}"></small>
+                            </div>
+                        </div>
 
-					<div class="form-group row">
-						<div class="col-sm-6">
-							<input type="submit" value="Crear Vehiculo"
-								class="btn btn-primary" />
-						</div>
-					</div>
-					<!-- <td><input type="hidden" th:field="*{id}" /></td>-->
-				</form>
-			</div>
-		</div>
-	</div>
-	<footer th:replace="layout/layout :: footer"></footer>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input type="submit" value="Crear Vehiculo"
+                                       class="btn btn-primary" />
+                            </div>
+                        </div>
+                        <!-- <td><input type="hidden" th:field="*{id}" /></td>-->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <footer th:replace="layout/layout :: footer"></footer>
 
-</body>
+    </body>
 </html>

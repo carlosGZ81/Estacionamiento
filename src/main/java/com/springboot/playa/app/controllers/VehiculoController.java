@@ -25,7 +25,7 @@ public class VehiculoController {
 
     @RequestMapping(value = "/listar", method = RequestMethod.GET)
     public String listar(Model model) {
-        model.addAttribute("titulo", "Listado de vehículos");
+        model.addAttribute("titulo", "Vehículos Registrados");
         model.addAttribute("vehiculos", vehiculoService.findAll());
         return "listar";
     }
@@ -34,7 +34,7 @@ public class VehiculoController {
     public String crear(Model model) {
         Vehiculo vehiculo = new Vehiculo();
         model.addAttribute("vehiculo", vehiculo);
-        model.addAttribute("titulo", "Formulario de Vehículo");
+        model.addAttribute("titulo", "Registra Vehículo");
         return "form";
     }
 
@@ -48,7 +48,7 @@ public class VehiculoController {
             return "redirect:/listar";
         }
         model.put("vehiculo", vehiculo);
-        model.put("titulo", "Editar vehiculo");
+        model.put("titulo", "Editar vehículo");
         return "form";
     }
 

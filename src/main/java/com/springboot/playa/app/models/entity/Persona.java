@@ -32,7 +32,7 @@ public class Persona implements Serializable {
     @NotNull
     private Integer dni;
 
-    @NotNull
+    //@NotNull
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
