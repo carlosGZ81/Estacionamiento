@@ -9,13 +9,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "marca_vehiculos")
-public class Marca_vehiculo implements Serializable{
+@Table(name = "desc_vehiculos")
+public class DescVehiculo implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)   
     private Long id;
-    private String marca_vehic;
+    //variables
+    private String descVehic;
 
     public Long getId() {
         return id;
@@ -25,13 +26,12 @@ public class Marca_vehiculo implements Serializable{
         this.id = id;
     }
 
-    public String getMarca_vehic() {
-        return marca_vehic;
+    public String getdescVehic() {
+        return descVehic;
     }
 
-    public void setMarca_vehic(String marca_vehic) {
-        this.marca_vehic = marca_vehic;
-    }
-    
+    public void setdescVehic(String desc_vehic) {
+        this.descVehic = desc_vehic;
+    }    
     
 }

@@ -33,22 +33,23 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="tipo_vehic" class="col-sm-2 col-form-label">Tipo
+                            <label for="tipoVehic" class="col-sm-2 col-form-label">Tipo
                                 Vehiculo</label>
                             <div class="col-sm-6">
-                                <select th:field="*{tipo_vehic}" class="form-control" autofocus required>
+                               <select th:field="*{tipoVehic}" class="form-control" autofocus required>
                                     <option value=""  selected="selected">Tipo de Vehículo</option>
-                                    <option value="1">AUTO</option>
-                                    <option value="2">MOTO</option>
-                                    <option value="3">CAMIONETA</option>
-                                    <option value="4">CAMION</option>
-                                    <option value="5">UTILITARIO</option>
-                                    <option value="99">OTRO</option>
+                                    <option value="AUTO">AUTO</option>
+                                    <option value="MOTO">MOTO</option>
+                                    <option value="CAMIONETA">CAMIONETA</option>
+                                    <option value="CAMION">CAMION</option>
+                                    <option value="UTILITARIO">UTILITARIO</option>
+                                    <option value="OTRO">OTRO</option>
                                 </select>
-                                <!--                                <input type="text" th:field="*{tipo_vehic}" class="form-control" />-->
+
+<!--                              <input type="text" th:field="*{tipoVehic}" class="form-control" />-->
                                 <small class="form-text text-danger"
-                                       th:if="${#fields.hasErrors('tipo_vehic')}"
-                                       th:errors="*{tipo_vehic}"></small>
+                                       th:if="${#fields.hasErrors('tipoVehic')}"
+                                       th:errors="*{tipoVehic}"></small>
                             </div>
                         </div>
 
@@ -58,17 +59,17 @@
                             <div class="col-sm-6">
                                 <select th:field="*{marca_vehic}" class="form-control" autofocus required>
                                     <option value=""  selected="selected">Marca del Vehiculo</option>
-                                    <option value="1">AUDI</option>
-                                    <option value="2">CHEVROLET</option>
-                                    <option value="3">BMW</option>
-                                    <option value="4">FIAT</option>
-                                    <option value="5">PEUGEOT</option>
-                                    <option value="6">VOLVO</option>
-                                    <option value="7">CITROEN</option>
-                                    <option value="8">CHRYSLER</option>
-                                    <option value="99">OTRO</option>
+                                    <option value="AUDI">AUDI</option>
+                                    <option value="CHEVROLET">CHEVROLET</option>
+                                    <option value="BMW">BMW</option>
+                                    <option value="FIAT">FIAT</option>
+                                    <option value="PEUGEOT">PEUGEOT</option>
+                                    <option value="VOLVO">VOLVO</option>
+                                    <option value="CITROEN">CITROEN</option>
+                                    <option value="CHRYSLER">CHRYSLER</option>
+                                    <option value="OTRO">OTRO</option>
                                 </select>
-                                <!--                                <input type="text" th:field="*{marca_vehic}" class="form-control" />-->
+                                <!--<input type="text" th:field="*{marca_vehic}" class="form-control" />-->
                                 <small class="form-text text-danger"
                                        th:if="${#fields.hasErrors('marca_vehic')}"
                                        th:errors="*{marca_vehic}"></small>
@@ -81,15 +82,15 @@
                             <div class="col-sm-6">
                                 <select th:field="*{desc_vehic}" class="form-control" autofocus required>
                                     <option value=""  selected="selected">Descripción Vehiculo</option>
-                                    <option value="1">SEDAN 3 PUERTAS</option>
-                                    <option value="2">SEDAN 4 PUERTAS</option>
-                                    <option value="3">MOTO MAS DE 100CC</option>
-                                    <option value="4">MOTO MENOS DE 100CC</option>
-                                    <option value="5">UTILITARIO 2 EJES</option>
-                                    <option value="6">UTILITARIO MULTI EJES</option>
-                                    <option value="99">OTRO</option>
+                                    <option value="SEDAN 3 PUERTAS">SEDAN 3 PUERTAS</option>
+                                    <option value="SEDAN 4 PUERTAS">SEDAN 4 PUERTAS</option>
+                                    <option value="MOTO MAS DE 100C">MOTO MAS DE 100CC</option>
+                                    <option value="MOTO MENOS DE 100CC">MOTO MENOS DE 100CC</option>
+                                    <option value="UTILITARIO 2 EJES">UTILITARIO 2 EJES</option>
+                                    <option value="UTILITARIO MULTI EJES">UTILITARIO MULTI EJES</option>
+                                    <option value="OTRO">OTRO</option>
                                 </select>
-                                <!--                                <input type="text" th:field="*{desc_vehic}" class="form-control" />-->
+                                <!--<input type="text" th:field="*{desc_vehic}" class="form-control" />-->
                                 <small class="form-text text-danger"
                                        th:if="${#fields.hasErrors('desc_vehic')}"
                                        th:errors="*{desc_vehic}"></small>

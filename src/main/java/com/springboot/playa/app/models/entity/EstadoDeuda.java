@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "estado_deudas")
-public class Estado_deuda implements Serializable{
+public class EstadoDeuda implements Serializable{
        
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)   
