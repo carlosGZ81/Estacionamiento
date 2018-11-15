@@ -33,10 +33,16 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="tipoVehic" class="col-sm-2 col-form-label">Tipo
+                            <label for="tipo_vehic" class="col-sm-2 col-form-label">Tipo
                                 Vehiculo</label>
                             <div class="col-sm-6">
-                               <select th:field="*{tipoVehic}" class="form-control" autofocus required>
+                                <!--                                <select class="form-control">
+                                                                    <option th:each="tipo_vehic : ${T(com.springboot.playa.app.models.entity.TipoVehiculo).values()}"
+                                                                            th:value="${tipo_vehic}"
+                                                                            th:text="${tipo_vehic.displayName}">
+                                                                    </option>
+                                                                </select>-->
+                                <select th:field="*{tipo_vehic}" class="form-control" autofocus required>
                                     <option value=""  selected="selected">Tipo de Vehículo</option>
                                     <option value="AUTO">AUTO</option>
                                     <option value="MOTO">MOTO</option>
@@ -46,10 +52,10 @@
                                     <option value="OTRO">OTRO</option>
                                 </select>
 
-<!--                              <input type="text" th:field="*{tipoVehic}" class="form-control" />-->
+                                <!--                              <input type="text" th:field="*{tipoVehic}" class="form-control" />-->
                                 <small class="form-text text-danger"
-                                       th:if="${#fields.hasErrors('tipoVehic')}"
-                                       th:errors="*{tipoVehic}"></small>
+                                       th:if="${#fields.hasErrors('tipo_vehic')}"
+                                       th:errors="*{tipo_vehic}"></small>
                             </div>
                         </div>
 
@@ -57,6 +63,12 @@
                             <label for="marca_vehic" class="col-sm-2 col-form-label">Marca
                                 Vehiculo</label>
                             <div class="col-sm-6">
+                                <!--                                <select class="form-control">
+                                                                    <option th:each="marca_vehic : ${T(com.springboot.playa.app.models.entity.MarcaVehiculo).values()}"
+                                                                            th:value="${marca_vehic}"
+                                                                            th:text="${marca_vehic.displayName}">
+                                                                    </option>
+                                                                </select>-->
                                 <select th:field="*{marca_vehic}" class="form-control" autofocus required>
                                     <option value=""  selected="selected">Marca del Vehiculo</option>
                                     <option value="AUDI">AUDI</option>
@@ -80,16 +92,25 @@
                             <label for="desc_vehic" class="col-sm-2 col-form-label">Descripción
                                 Vehiculo</label>
                             <div class="col-sm-6">
+                                <!--                                <select class="form-control">
+                                                                    <option th:each="desc_vehic : ${T(com.springboot.playa.app.models.entity.DescVehiculo).values()}"
+                                                                            th:value="${desc_vehic}"
+                                                                            th:text="${desc_vehic.displayName}">
+                                                                    </option>
+                                                                </select>-->
                                 <select th:field="*{desc_vehic}" class="form-control" autofocus required>
                                     <option value=""  selected="selected">Descripción Vehiculo</option>
                                     <option value="SEDAN 3 PUERTAS">SEDAN 3 PUERTAS</option>
                                     <option value="SEDAN 4 PUERTAS">SEDAN 4 PUERTAS</option>
-                                    <option value="MOTO MAS DE 100C">MOTO MAS DE 100CC</option>
+                                    <option value="MOTO MAS DE 100CC">MOTO MAS DE 100CC</option>
                                     <option value="MOTO MENOS DE 100CC">MOTO MENOS DE 100CC</option>
                                     <option value="UTILITARIO 2 EJES">UTILITARIO 2 EJES</option>
                                     <option value="UTILITARIO MULTI EJES">UTILITARIO MULTI EJES</option>
                                     <option value="OTRO">OTRO</option>
                                 </select>
+
+
+
                                 <!--<input type="text" th:field="*{desc_vehic}" class="form-control" />-->
                                 <small class="form-text text-danger"
                                        th:if="${#fields.hasErrors('desc_vehic')}"

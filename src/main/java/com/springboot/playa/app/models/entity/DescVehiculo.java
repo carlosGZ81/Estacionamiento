@@ -1,37 +1,21 @@
 
 package com.springboot.playa.app.models.entity;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "desc_vehiculos")
-public class DescVehiculo implements Serializable{
+
+
+public enum DescVehiculo{
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)   
-    private Long id;
-    //variables
-    private String descVehic;
+   SEDAN3P("SEDAN 3 PUERTAS"),
+   SEDAN4P("SEDAN 4 PUERTAS");
 
-    public Long getId() {
-        return id;
+    private final String displayName;
+
+    DescVehiculo(String displayName) {
+        this.displayName = displayName;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public String getDisplayName() {
+        return displayName;
     }
-
-    public String getdescVehic() {
-        return descVehic;
-    }
-
-    public void setdescVehic(String desc_vehic) {
-        this.descVehic = desc_vehic;
-    }    
-    
 }

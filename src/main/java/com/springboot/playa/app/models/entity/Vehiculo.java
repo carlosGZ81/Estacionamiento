@@ -7,8 +7,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,12 +32,14 @@ public class Vehiculo implements Serializable {
     @NotEmpty
     private String dominio;
     //enumerador
-    @Enumerated(EnumType.STRING)
-    @Column(length = 10)
-    private TipoVehiculo tipoVehic;
-    
-    private Integer marca_vehic;
-    private Integer desc_vehic;
+    //@Enumerated(EnumType.STRING)
+    //@Column(length = 10)
+    @Column(name = "tipo_vehic")
+    private String tipo_vehic;
+    @Column(name = "marca_vehic")
+    private String marca_vehic;
+    @Column(name = "desc_vehic")
+    private String desc_vehic;
 
     /*@NotNull*/
     @Column(name = "create_at")
@@ -78,23 +78,31 @@ public class Vehiculo implements Serializable {
         this.dominio = dominio;
     }
 
-    
-    
-    public Integer getMarca_vehic() {
+    public String getTipo_vehic() {
+        return tipo_vehic;
+    }
+
+    public void setTipo_vehic(String tipo_vehic) {
+        this.tipo_vehic = tipo_vehic;
+    }
+
+    public String getMarca_vehic() {
         return marca_vehic;
     }
 
-    public void setMarca_vehic(Integer marca_vehic) {
+    public void setMarca_vehic(String marca_vehic) {
         this.marca_vehic = marca_vehic;
     }
 
-    public Integer getDesc_vehic() {
+    public String getDesc_vehic() {
         return desc_vehic;
     }
 
-    public void setDesc_vehic(Integer desc_vehic) {
+    public void setDesc_vehic(String desc_vehic) {
         this.desc_vehic = desc_vehic;
     }
+
+   
 
     public Date getCreateAt() {
         return createAt;
@@ -104,6 +112,7 @@ public class Vehiculo implements Serializable {
         this.createAt = createAt;
     }
 
+    
     public List<Ingreso> getIngresos() {
         return ingresos;
     }
@@ -117,13 +126,5 @@ public class Vehiculo implements Serializable {
     }
     private static final long serialVersionUID = 1L;
 
-    public TipoVehiculo getTipoVehic() {
-        return tipoVehic;
-    }
-
-    public void setTipoVehic(TipoVehiculo tipoVehic) {
-        this.tipoVehic = tipoVehic;
-    }
-    
     
 }

@@ -1,5 +1,7 @@
 package com.springboot.playa.app.models.entity;
 
+
+
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -17,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "ingresos")
-public class Ingreso implements Serializable {
+public class Ingreso implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +28,9 @@ public class Ingreso implements Serializable {
 
     private Long idPersona;
     private Long idOperador;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDesde;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaHasta;
     private Integer tiempoIngreso;
 
@@ -37,7 +42,9 @@ public class Ingreso implements Serializable {
     //asociacion con vehiculo
     @ManyToOne(fetch = FetchType.LAZY)
     private Vehiculo vehiculo;
-    
+    @OneToOne
+    private Deuda deuda;
+
     @PrePersist
     public void prePersist() {
         createAt = new Date();
@@ -99,4 +106,21 @@ public class Ingreso implements Serializable {
         this.createAt = createAt;
     }
 
+    public Vehiculo getVehiculo() {
+        return vehiculo;
+    }
+
+    public void setVehiculo(Vehiculo vehiculo) {
+        this.vehiculo = vehiculo;
+    }
+
+    public Deuda getDeuda() {
+        return deuda;
+    }
+
+    public void setDeuda(Deuda deuda) {
+        this.deuda = deuda;
+    }
+    
+    private static final long serialVersionUID = 1L;
 }

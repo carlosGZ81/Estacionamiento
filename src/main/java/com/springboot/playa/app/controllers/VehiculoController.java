@@ -23,7 +23,7 @@ public class VehiculoController {
     @Autowired
     private IVehiculoService vehiculoService;
 
-    @RequestMapping(value = "/listar", method = RequestMethod.GET)
+    @RequestMapping(value = {"/listar", "/"}, method = RequestMethod.GET)
     public String listar(Model model) {
         model.addAttribute("titulo", "Vehículos Registrados");
         model.addAttribute("vehiculos", vehiculoService.findAll());

@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(name = "personas")
 public class Persona implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,5 +82,7 @@ public class Persona implements Serializable {
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
     }
+    
+    private static final long serialVersionUID = 1L;
 
 }

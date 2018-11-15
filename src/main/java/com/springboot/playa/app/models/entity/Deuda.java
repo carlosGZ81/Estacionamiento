@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,7 +32,8 @@ public class Deuda implements Serializable{
     private Date createAt;
     
     //asociaciones
-    
+    @OneToOne
+    private Ingreso ingreso;
     
     public Long getId() {
         return id;
@@ -64,8 +66,13 @@ public class Deuda implements Serializable{
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
     }
-    
-    
-    
-    
+
+    public Ingreso getIngreso() {
+        return ingreso;
+    }
+
+    public void setIngreso(Ingreso ingreso) {
+        this.ingreso = ingreso;
+    }
+     
 }
