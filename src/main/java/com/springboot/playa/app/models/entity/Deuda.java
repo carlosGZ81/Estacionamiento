@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,7 +25,7 @@ public class Deuda implements Serializable{
    
     //variables
     private Integer cantFraccion;
-    private Float valorDeuda;
+    private Double valorDeuda;
     
     //fecha de creacion
     @Column(name = "create_at")
@@ -32,8 +34,9 @@ public class Deuda implements Serializable{
     private Date createAt;
     
     //asociaciones
-    @OneToOne
-    private Ingreso ingreso;
+    //@OneToOne(fetch = FetchType.LAZY)
+    //@JoinColumn(name = "")
+    //private Ingreso ingreso;
     
     public Long getId() {
         return id;
@@ -51,11 +54,11 @@ public class Deuda implements Serializable{
         this.cantFraccion = cantFraccion;
     }
 
-    public Float getValorDeuda() {
-        return valorDeuda;
-    }
+    //public Double getValorDeuda() {
+      //  return valorDeuda * ingreso.getTiempoIngreso();
+    //}
 
-    public void setValorDeuda(Float valorDeuda) {
+    public void setValorDeuda(Double valorDeuda) {
         this.valorDeuda = valorDeuda;
     }
 
@@ -67,12 +70,12 @@ public class Deuda implements Serializable{
         this.createAt = createAt;
     }
 
-    public Ingreso getIngreso() {
-        return ingreso;
-    }
+   //public Ingreso getIngreso() {
+     //   return ingreso;
+    //}
 
-    public void setIngreso(Ingreso ingreso) {
-        this.ingreso = ingreso;
-    }
+    //public void setIngreso(Ingreso ingreso) {
+      //  this.ingreso = ingreso;
+    //}
      
 }

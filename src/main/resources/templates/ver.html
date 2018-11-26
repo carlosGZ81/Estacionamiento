@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <meta charset="UTF-8" />
+
+    <head th:replace="layout/layout :: head" />
+
+    <body>
+
+        <header th:replace="layout/layout :: header" />
+        <div class="container py-4">
+
+            <div class="card bg-light">
+                <div class="card-header" th:text="${titulo}"></div>
+                <div class="card-body">
+
+                    <!--                    VISUAL DE LA IMAGEN-->
+                    <img th:if="${#strings.length(vehiculo.foto) > 0}"
+                         class="img-thumbnail rounded float-left" style="max-width: 25%;"
+                         th:src="@{'/uploads/'+${vehiculo.foto}}" 
+                         th:alt="${vehiculo.foto}" />
+
+                    <ul class="list-group">
+                        <li class="list-group-item" th:text="${vehiculo.id}"></li>
+                        <li class="list-group-item" th:text="${vehiculo.dominio}"></li>
+                        <li class="list-group-item" th:text="${vehiculo.tipo_vehic}"></li>
+                        <li class="list-group-item" th:text="${vehiculo.marca_vehic}"></li>
+                        <li class="list-group-item" th:text="${vehiculo.desc_vehic}"></li>
+                        <li class="list-group-item" th:text="${vehiculo.createAt}"></li>
+                    </ul>
+                    <div th:if="${#lists.isEmpty(vehiculo.ingresos)}" class="alert alert-info my-4" th:text="'No hay ingresos registrados para el vehiculo dominio: ' + ${vehiculo.dominio}"></div>
+                    <table th:if="${not #lists.isEmpty(vehiculo.ingresos)}" class="table table-bordered table-striped py-4">
+                        <thead>
+                            <tr>
+                                <th>Id ingreso</th>
+                                <th>fecha ingreso</th>
+                                <th>fecha salida</th>
+                                <th>cantidad de unidades</th>
+                                <th>monto deuda</th>
+                                <th>estado deuda</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr th:each="ingreso: ${vehiculo.ingresos}">
+                                <td th:text="${ingreso.id}"></td>
+                                <td th:text="${ingreso.fechaDesde}"></td>
+                                <td th:text="${ingreso.fechaHasta}"></td>
+                                <td th:text="${ingreso.tiempoIngreso}"></td>
+                                <td th:text="${ingreso.valorDeuda}"></td>
+                                <td th:text="${ingreso.estadoDeuda}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+        <footer th:replace="layout/layout :: footer"></footer>
+    </body>
+
+</html>

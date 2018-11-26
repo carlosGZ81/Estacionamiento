@@ -34,24 +34,24 @@ public class Vehiculo implements Serializable {
     //enumerador
     //@Enumerated(EnumType.STRING)
     //@Column(length = 10)
-    @Column(name = "tipo_vehic")
+   // @Column(name = "tipo_vehic")
     private String tipo_vehic;
-    @Column(name = "marca_vehic")
     private String marca_vehic;
-    @Column(name = "desc_vehic")
     private String desc_vehic;
-
     /*@NotNull*/
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date createAt;
-
+    
+ 
+    private String foto = "";
+    
     //asociacion bidireccional
     @OneToMany(mappedBy = "vehiculo", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Ingreso> ingresos;
+    private List<Ingreso>ingresos;
 
-    //inicializacion de la lista
+    //CONSTRUCTOR - inicializacion de la lista de ingresos 
     public Vehiculo() {
         ingresos = new ArrayList<Ingreso>();
     }
@@ -124,7 +124,15 @@ public class Vehiculo implements Serializable {
     public void addIngreso(Ingreso ingreso) {
         ingresos.add(ingreso);
     }
-    private static final long serialVersionUID = 1L;
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
     
+    
+    private static final long serialVersionUID = 1L;   
 }

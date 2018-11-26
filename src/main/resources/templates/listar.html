@@ -11,7 +11,7 @@
                 <div class="card-header" th:text="${titulo}"></div>
                 <div class="card-body">
                     <h4 class="card-title">
-                        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/form}" class="btn btn-primary btn-xs">Crear
+                        <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/form}" class="btn btn-primary btn-xs">Crear
                             vehículo</a>
                     </h4>
 
@@ -24,20 +24,22 @@
                                 <th>tipo</th>
                                 <th>marca</th>
                                 <th>descripción</th>
-                                <th>fecha</th>
-                                <th sec:authorize="hasRole('ROLE_ADMIN')">editar</th>
+                                <th sec:authorize="hasRole('ROLE_USER')">fecha Alta</th>
+                                <th sec:authorize="hasRole('ROLE_USER')">Carga Ingreso</th>
+                                <th sec:authorize="hasRole('ROLE_USER')">editar</th>
                                 <th sec:authorize="hasRole('ROLE_ADMIN')">eliminar</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="vehiculo: ${vehiculos}">
-                                <td sec:authorize="hasRole('ROLE_USER')" th:text="${vehiculo.id}"></td>
+                                <td sec:authorize="hasRole('ROLE_USER')"><a class="btn btn-primary btn-xs" th:href ="@{/ver/} + ${vehiculo.id}" th:text="${vehiculo.id}"></a></td>
                                 <td th:text="${vehiculo.dominio}"></td>
                                 <td th:text="${vehiculo.tipo_vehic}"></td>
                                 <td th:text="${vehiculo.marca_vehic}"></td>
                                 <td th:text="${vehiculo.desc_vehic}"></td>
-                                <td th:text="${vehiculo.createAt}"></td>
-                                <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-primary btn-xs"
+                                <td sec:authorize="hasRole('ROLE_USER')" th:text="${vehiculo.createAt}"></td>
+                                <td sec:authorize="hasRole('ROLE_USER')"><a class="btn btn-success btn-xs" th:text="'Ingreso Vehiculo'"></td>
+                                <td sec:authorize="hasRole('ROLE_USER')"><a class="btn btn-primary btn-xs"
                                        th:href="@{/form/} + ${vehiculo.id}" th:text="'Editar'"></a></td>
                                 <td sec:authorize="hasRole('ROLE_ADMIN')"><a class="btn btn-danger btn-xs"
                                        th:href="@{/eliminar/} + ${vehiculo.id}" th:text="'Eliminar'"
@@ -47,6 +49,7 @@
 
                         </tbody>
                     </table>
+                    <nav th:replace = "paginator-nav :: paginator"></nav>
                 </div>
             </div>
         </div>

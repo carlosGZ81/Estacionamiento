@@ -5,14 +5,19 @@ import com.springboot.playa.app.models.service.IPersonaService;
 import java.util.Map;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.data.domain.Page;
+import com.springboot.playa.app.util.paginator.PageRender;
+import org.springframework.data.domain.Pageable;
 
 @Controller
 public class PersonaController {
@@ -22,9 +27,16 @@ public class PersonaController {
 
     //listar todas las personas
     @RequestMapping(value = "/persona", method = RequestMethod.GET)
-    public String listarPersona(Model model) {
+    public String listarPersona(@RequestParam(name="page", defaultValue="0") int page, Model model) {
+        
+        //paginacion
+        Pageable pageRequest =  PageRequest.of(page, 5);
+        Page<Persona> personas = personaService.findAll(pageRequest);
+        PageRender<Persona>pageRender = new PageRender<>("/persona", personas);
         model.addAttribute("titulo", "Personas - ABM");
-        model.addAttribute("persona", personaService.findAll());
+        model.addAttribute("persona", personas);
+        //vista del paginador
+        model.addAttribute("page", pageRender);
         return "persona";
     }
 

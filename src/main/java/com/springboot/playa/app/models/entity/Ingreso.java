@@ -3,6 +3,7 @@ package com.springboot.playa.app.models.entity;
 
 
 import java.io.Serializable;
+//import java.sql.Time;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+//import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,15 +27,25 @@ public class Ingreso implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    private Long idPersona;
-    private Long idOperador;
-    @Temporal(TemporalType.TIMESTAMP)
+    
+    @Column(name = "fec_ing")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date fechaDesde;
-    @Temporal(TemporalType.TIMESTAMP)
+    
+    @Column(name= "fec_egre")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date fechaHasta;
+    
+    @Column(name = "fraccion_tiempo")
     private Integer tiempoIngreso;
-
+    @Column(name = "valor_deuda")
+    private Double valorDeuda;
+    @Column(name = "estado_Deuda")
+    private String estadoDeuda;
+    
+    
     @Column(name = "create_at")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -42,8 +54,9 @@ public class Ingreso implements Serializable{
     //asociacion con vehiculo
     @ManyToOne(fetch = FetchType.LAZY)
     private Vehiculo vehiculo;
-    @OneToOne
-    private Deuda deuda;
+    
+    //@OneToOne
+    //private Deuda deuda;
 
     @PrePersist
     public void prePersist() {
@@ -56,22 +69,6 @@ public class Ingreso implements Serializable{
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(Long idPersona) {
-        this.idPersona = idPersona;
-    }
-
-    public Long getIdOperador() {
-        return idOperador;
-    }
-
-    public void setIdOperador(Long idOperador) {
-        this.idOperador = idOperador;
     }
 
     public Date getFechaDesde() {
@@ -94,7 +91,7 @@ public class Ingreso implements Serializable{
         return tiempoIngreso;
     }
 
-    public void setTiempoIngreso(Integer tiempoIngreso) {
+   public void setTiempoIngreso(Integer tiempoIngreso) {
         this.tiempoIngreso = tiempoIngreso;
     }
 
@@ -114,13 +111,36 @@ public class Ingreso implements Serializable{
         this.vehiculo = vehiculo;
     }
 
-    public Deuda getDeuda() {
-        return deuda;
+//    public Deuda getDeuda() {
+//        return deuda;
+//    }
+//
+//    public void setDeuda(Deuda deuda) {
+//        this.deuda = deuda;
+//    }
+
+    public String getEstadoDeuda() {
+        return estadoDeuda;
     }
 
-    public void setDeuda(Deuda deuda) {
-        this.deuda = deuda;
+    public void setEstadoDeuda(String estadoDeuda) {
+        this.estadoDeuda = estadoDeuda;
     }
-    
+
+    public Double getValorDeuda() {
+      //  valorDeuda = tiempoIngreso * 2.5;
+        return valorDeuda;
+    }
+
+    public void setValorDeuda(Double valorDeuda) {
+        this.valorDeuda = valorDeuda;
+    }
+  
+//    public Integer getFraccion(){
+//        // esto despues lo tengo que cambiar tomandolo desde fecha inicio y fecha fin
+//        tiempoIngreso = 60;
+//        return tiempoIngreso.intValue()/15;
+//    }       
+           
     private static final long serialVersionUID = 1L;
 }

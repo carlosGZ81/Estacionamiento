@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.springboot.playa.app.models.dao.IVehiculoDao;
 import com.springboot.playa.app.models.entity.Vehiculo;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @Service
 public class VehiculoServiceImpl implements IVehiculoService {
@@ -43,10 +45,12 @@ public class VehiculoServiceImpl implements IVehiculoService {
     @Override
     public Vehiculo saveAPI(Vehiculo vehiculo) {
         return vehiculoDao.save(vehiculo);
+    }  
+
+    @Override
+    public Page<Vehiculo> findAll(Pageable pageable) {
+       
+        return vehiculoDao.findAll(pageable);
     }
-
-    
-
-    
 
 }

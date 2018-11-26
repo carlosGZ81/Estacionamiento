@@ -19,7 +19,7 @@
                 <div class="card-body">
 
 
-                    <form th:action="@{/form}" th:object="${vehiculo}" method="post">
+                    <form th:action="@{/form}" th:object="${vehiculo}" method="post" enctype="multipart/form-data">
 
                         <div class="form-group row">
                             <label for="dominio" class="col-sm-2 col-form-label">Dominio</label>
@@ -109,15 +109,20 @@
                                     <option value="OTRO">OTRO</option>
                                 </select>
 
-
-
                                 <!--<input type="text" th:field="*{desc_vehic}" class="form-control" />-->
                                 <small class="form-text text-danger"
                                        th:if="${#fields.hasErrors('desc_vehic')}"
                                        th:errors="*{desc_vehic}"></small>
                             </div>
                         </div>
-
+                        
+                         <div class="form-group row">
+                            <label for="file" class="col col-sm-2 col-form-label"></label>
+                            <div class="col-sm-6">
+                            <input type="file" name="file" class="form-control" />
+                            </div>
+                        </div>
+                        
                         <div class="form-group row">
                             <div class="col-sm-6">
                                 <input type="submit" value="Crear Vehiculo"

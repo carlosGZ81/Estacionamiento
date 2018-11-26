@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Page;
 
 @Service
 public class PersonaServiceImpl implements IPersonaService {
@@ -36,7 +38,12 @@ public class PersonaServiceImpl implements IPersonaService {
     public void delete(Long id) {
         personaDao.deleteById(id);
     }
-
+    
+    @Override
+    public Page<Persona> findAll(Pageable pageable) {  
+        return personaDao.findAll(pageable);
+    }
+    
     /*@Override
     public Persona saveAPI(Persona vehiculo) {
         throw new UnsupportedOperationException("Not supported yet."); 

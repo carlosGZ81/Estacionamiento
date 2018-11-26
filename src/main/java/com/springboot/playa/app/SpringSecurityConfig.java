@@ -1,5 +1,6 @@
 package com.springboot.playa.app;
 
+import com.springboot.playa.app.auth.handler.LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -12,18 +13,24 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
-
+    
+    @Autowired
+    private LoginSuccessHandler successHandler;
+    
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().antMatchers("/", "/css/**", "/js/**", "/images/**", "/listar").permitAll()
-                .antMatchers("/persona/**").hasAnyRole("USER")
+                .antMatchers("/persona/**").hasAnyRole("ADMIN,USER")
                 .antMatchers("/uploads/**").hasAnyRole("USER")
-                .antMatchers("/form/**").hasAnyRole("ADMIN")
+                .antMatchers("/form/**").hasAnyRole("ADMIN, USER")
+                .antMatchers("/form_persona/**").hasAnyRole("ADMIN, USER")
                 .antMatchers("/eliminar/**").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().loginPage("/login")
-                .permitAll()
+                    .formLogin()
+                        .successHandler(successHandler)
+                        .loginPage("/login")
+                    .permitAll()
                 .and()
                 .logout().permitAll()
                 .and()
